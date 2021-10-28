@@ -1,6 +1,4 @@
-import os.path
 import time
-
 import telegram
 import requests
 from pathlib import Path
@@ -58,7 +56,7 @@ def fetch_epic_image(url):
         date_format = date.strftime('%Y/%m/%d')
         url = 'https://api.nasa.gov/EPIC/archive/natural/{}/png/{}.png'.format(
             date_format,
-            name
+            name,
         )
 
         with open('{}{}.png'.format(path, number), 'wb') as file:
