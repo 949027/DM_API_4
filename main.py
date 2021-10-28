@@ -1,4 +1,6 @@
 import os.path
+import time
+
 import telegram
 import requests
 from pathlib import Path
@@ -33,7 +35,10 @@ def fetch_nasa_image(url):
     for picture_number, picture in enumerate(pictures):
         picture_url = picture['url']
         picture_extension = get_extension(picture_url)
-        with open('{}{}{}'.format(path, picture_number, picture_extension), 'wb') as file:
+        with open(
+                '{}{}{}'.format(path, picture_number, picture_extension),
+                'wb',
+        ) as file:
             response = requests.get(picture_url)
             response.raise_for_status()
             file.write(response.content)
@@ -51,7 +56,10 @@ def fetch_epic_image(url):
         date_str = image['date']
         date = datetime.strptime(date_str, '%Y-%m-%d %H:%M:%S')
         date_format = date.strftime('%Y/%m/%d')
-        url = 'https://api.nasa.gov/EPIC/archive/natural/{}/png/{}.png'.format(date_format, name)
+        url = 'https://api.nasa.gov/EPIC/archive/natural/{}/png/{}.png'.format(
+            date_format,
+            name
+        )
 
         with open('{}{}.png'.format(path, number), 'wb') as file:
             response = requests.get(url, params=payload)
@@ -67,12 +75,19 @@ def get_extension(url):
 
 if __name__ == '__main__':
     load_dotenv()
-    token = os.getenv('TOKEN_NASA')
-    load_dotenv()
+    token = os.getenv('TOKEN_BOT_TELEGRAM')
+    delay = float(os.getenv('DELAY', 86400))
     Path('images').mkdir(parents=True, exist_ok=True)
     Path('images/NASA').mkdir(parents=True, exist_ok=True)
     Path('images/EPIC').mkdir(parents=True, exist_ok=True)
+    images_filename = os.listdir('images/EPIC')
 
-    bot = telegram.Bot(token='2005968531:AAGcx7Y7InAxTGgoJTV84RfBT3Yu0uZpkPk')
-    bot.send_message(chat_id='@test_devman', text="I'm sorry Dave I'm afraid I can't do that.")
-    bot.send_document(chat_id='@test_devman', document=open('images/EPIC/0.png', 'rb'))
+    bot = telegram.Bot(token=token)
+
+    while True:
+        for image in images_filename:
+            bot.send_document(
+                chat_id='@test_devman',
+                document=open(f'images/EPIC/{image}', 'rb'),
+            )
+            time.sleep(delay)
