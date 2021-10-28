@@ -1,26 +1,8 @@
-import time
-import telegram
 import requests
 from pathlib import Path
 from urllib import parse
 import os
-from dotenv import load_dotenv
 from datetime import datetime
-
-
-def fetch_spacex_last_launch(url):
-    path = 'images/spacex'
-    response = requests.get(url)
-    response.raise_for_status()
-
-    images_url = (response.json())['links']['flickr_images']
-
-    for image_number, image_url in enumerate(images_url):
-        response = requests.get(image_url)
-        response.raise_for_status()
-
-        with open('{}{}{}'.format(path, image_number, '.jpg'), 'wb') as file:
-            file.write(response.content)
 
 
 def fetch_nasa_image(url):
@@ -71,21 +53,6 @@ def get_extension(url):
     return extension
 
 
-if __name__ == '__main__':
-    load_dotenv()
-    token = os.getenv('TOKEN_BOT_TELEGRAM')
-    delay = float(os.getenv('DELAY', 86400))
-    Path('images').mkdir(parents=True, exist_ok=True)
-    Path('images/NASA').mkdir(parents=True, exist_ok=True)
-    Path('images/EPIC').mkdir(parents=True, exist_ok=True)
-    images_filename = os.listdir('images/EPIC')
-
-    bot = telegram.Bot(token=token)
-
-    while True:
-        for image in images_filename:
-            bot.send_document(
-                chat_id='@test_devman',
-                document=open(f'images/EPIC/{image}', 'rb'),
-            )
-            time.sleep(delay)
+Path('images/EPIC').mkdir(parents=True, exist_ok=True)
+Path('images/NASA').mkdir(parents=True, exist_ok=True)
+token = os.getenv('TOKEN_NASA')
