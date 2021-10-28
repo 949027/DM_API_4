@@ -15,7 +15,7 @@ pip install -r requirements.txt
 ### Как пользоваться
 1. В программе имеются три функции для скачивания фотографий: fetch_spacex_last_launch(url), fetch_nasa_image(url), fetch_epic_image(url).
 В качестве аргумента необходимо передать url на соответствующий ресурс.
-2. Для запуска программы введите в консоли:
+2. Для публикации фото введите в консоли:
 ```python
-python3 main.py 
+python3 publisher.py 
 ```
