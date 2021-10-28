@@ -1,4 +1,5 @@
 import os.path
+import telegram
 import requests
 from pathlib import Path
 from urllib import parse
@@ -72,7 +73,5 @@ if __name__ == '__main__':
     Path('images/NASA').mkdir(parents=True, exist_ok=True)
     Path('images/EPIC').mkdir(parents=True, exist_ok=True)
 
-
-    fetch_epic_image('https://api.nasa.gov/EPIC/api/natural/')
-    #fetch_nasa_image('https://api.nasa.gov/planetary/apod')
-    #url = 'https://api.spacexdata.com/v3/launches/14'
+    bot = telegram.Bot(token='2005968531:AAGcx7Y7InAxTGgoJTV84RfBT3Yu0uZpkPk')
+    bot.send_message(chat_id='@test_devman', text="I'm sorry Dave I'm afraid I can't do that.")
