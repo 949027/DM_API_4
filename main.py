@@ -75,3 +75,4 @@ if __name__ == '__main__':
 
     bot = telegram.Bot(token='2005968531:AAGcx7Y7InAxTGgoJTV84RfBT3Yu0uZpkPk')
     bot.send_message(chat_id='@test_devman', text="I'm sorry Dave I'm afraid I can't do that.")
+    bot.send_document(chat_id='@test_devman', document=open('images/EPIC/0.png', 'rb'))
