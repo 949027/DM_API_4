@@ -2,7 +2,8 @@ import requests
 from pathlib import Path
 
 
-def fetch_spacex_last_launch(url):
+def fetch_spacex_last_launch():
+    url = 'https://api.spacexdata.com/v3/launches/74'
     path = 'images/spacex'
     response = requests.get(url)
     response.raise_for_status()

@@ -4,7 +4,8 @@ import os
 from datetime import datetime
 
 
-def fetch_nasa_image(url, token):
+def fetch_nasa_image(token):
+    url = 'https://api.nasa.gov/planetary/apod'
     path = 'images/nasa'
     payload = {'api_key': token, 'count': 30}
     response = requests.get(url, params=payload)
@@ -23,7 +24,8 @@ def fetch_nasa_image(url, token):
             file.write(response.content)
 
 
-def fetch_epic_image(url, token):
+def fetch_epic_image(token):
+    url = 'https://api.nasa.gov/EPIC/api/natural/images'
     path = 'images/epic'
     payload = {'api_key': token}
     response = requests.get(url, params=payload)
