@@ -17,15 +17,15 @@ if __name__ == '__main__':
     fetch_nasa.fetch_epic_image('https://api.nasa.gov/EPIC/api/natural/images', token_nasa)
     fetch_spacex.fetch_spacex_last_launch('https://api.spacexdata.com/v3/launches/74')
 
-    images_filename = os.listdir('images')
+    image_filenames = os.listdir('images')
 
     bot = telegram.Bot(token=token_bot)
 
     while True:
-        for image in images_filename:
-            print(f'images/{image}')
+        for image_filename in image_filenames:
+            print(f'images/{image_filename}')
             bot.send_document(
                 chat_id='@test_devman',
-                document=open(f'images/{image}', 'rb'),
+                document=open(f'images/{image_filename}', 'rb'),
             )
             time.sleep(delay)
