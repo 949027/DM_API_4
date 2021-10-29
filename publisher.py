@@ -25,7 +25,7 @@ def main():
     while True:
         for image_filename in image_filenames:
             with open(f'images/{image_filename}', 'rb') as file:
-                bot.send_document(chat_id='@test_devman', document=file)
+                bot.send_document(chat_id=os.getenv('NAME_BOT'), document=file)
 
             time.sleep(delay)
 
