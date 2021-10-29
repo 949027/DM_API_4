@@ -2,9 +2,6 @@ import requests
 from pathlib import Path
 
 
-Path('images/NASA').mkdir(parents=True, exist_ok=True)
-
-
 def fetch_spacex_last_launch(url):
     path = 'images/spacex'
     response = requests.get(url)

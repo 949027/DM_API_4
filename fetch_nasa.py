@@ -1,12 +1,11 @@
 import requests
-from pathlib import Path
 from urllib import parse
 import os
 from datetime import datetime
 
 
-def fetch_nasa_image(url):
-    path = 'images/NASA/'
+def fetch_nasa_image(url, token):
+    path = 'images/nasa'
     payload = {'api_key': token, 'count': 30}
     response = requests.get(url, params=payload)
     response.raise_for_status()
@@ -24,8 +23,8 @@ def fetch_nasa_image(url):
             file.write(response.content)
 
 
-def fetch_epic_image(url):
-    path = 'images/EPIC/'
+def fetch_epic_image(url, token):
+    path = 'images/epic'
     payload = {'api_key': token}
     response = requests.get(url, params=payload)
     response.raise_for_status()
@@ -53,6 +52,4 @@ def get_extension(url):
     return extension
 
 
-Path('images/EPIC').mkdir(parents=True, exist_ok=True)
-Path('images/NASA').mkdir(parents=True, exist_ok=True)
-token = os.getenv('TOKEN_NASA')
+
