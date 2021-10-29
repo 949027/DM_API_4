@@ -3,8 +3,15 @@ import telegram
 import os
 from dotenv import load_dotenv
 from pathlib import Path
-import fetch_nasa
 import fetch_spacex
+
+
+def download_image(response, path, picture_number, picture_extension):
+    with open(
+            '{}{}{}'.format(path, picture_number, picture_extension),
+            'wb',
+    ) as file:
+        file.write(response.content)
 
 
 def main():
@@ -16,7 +23,7 @@ def main():
 
     #fetch_nasa.fetch_nasa_image(token_nasa)
     #fetch_nasa.fetch_epic_image(token_nasa)
-    #fetch_spacex.fetch_spacex_last_launch()
+    fetch_spacex.fetch_spacex_last_launch()
 
     image_filenames = os.listdir('images')
 

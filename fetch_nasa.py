@@ -2,6 +2,7 @@ import requests
 from urllib import parse
 import os
 from datetime import datetime
+import publisher
 
 
 def fetch_nasa_image(token):
@@ -17,11 +18,8 @@ def fetch_nasa_image(token):
         picture_extension = get_extension(picture_url)
         response = requests.get(picture_url)
         response.raise_for_status()
-        with open(
-                '{}{}{}'.format(path, picture_number, picture_extension),
-                'wb',
-        ) as file:
-            file.write(response.content)
+
+        publisher.download_image(response, path, picture_number, picture_extension)
 
 
 def fetch_epic_image(token):
@@ -43,8 +41,8 @@ def fetch_epic_image(token):
         )
         response = requests.get(url, params=payload)
         response.raise_for_status()
-        with open('{}{}.png'.format(path, number), 'wb') as file:
-            file.write(response.content)
+
+        publisher.download_image(response, path, number, '.png')
 
 
 def get_extension(url):
