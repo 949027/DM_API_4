@@ -10,8 +10,8 @@ import fetch_nasa
 def main():
     Path('images').mkdir(parents=True, exist_ok=True)
     load_dotenv()
-    token_nasa = os.getenv('TOKEN_NASA')
-    token_bot = os.getenv('TOKEN_BOT_TELEGRAM')
+    token_nasa = os.getenv('NASA_TOKEN')
+    token_bot = os.getenv('TELEGRAM_BOT_TOKEN')
     delay = float(os.getenv('DELAY', 86400))
 
     fetch_nasa.fetch_nasa_images(token_nasa)
@@ -25,7 +25,7 @@ def main():
     while True:
         for image_filename in image_filenames:
             with open(f'images/{image_filename}', 'rb') as file:
-                bot.send_document(chat_id=os.getenv('NAME_BOT'), document=file)
+                bot.send_document(chat_id=os.getenv('BOT_NAME'), document=file)
 
             time.sleep(delay)
 
