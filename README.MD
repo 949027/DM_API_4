@@ -9,7 +9,7 @@
 pip install -r requirements.txt
 ```
 3. Создайте файл ```.env``` в корне проекта и пропишите в нем переменные окружения: 
-- ```NASA_TOKEN``` - токен NASA. Получить здесь: ```https://api.nasa.gov/```
+- ```NASA_TOKEN``` - токен NASA. Получить на [NASA API portal](https://api.nasa.gov/).
 - ```FLIGHT_NUMBER``` - номер полета ракеты SPACE-X.
 - ```TELEGRAM_BOT_TOKEN``` - токен телеграм-бота. Получить у @BotFather в телеграме
 - ```DELAY``` - задержка по времени публикации фотографий в секундах. По умолчанию - 1 сутки.
