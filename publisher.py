@@ -19,14 +19,16 @@ def post_images_in_telegram(image_filenames, bot_token):
 
 
 def main():
-    Path('images').mkdir(parents=True, exist_ok=True)
+    folder = 'images'
+    Path(folder).mkdir(parents=True, exist_ok=True)
+
     load_dotenv()
     nasa_token = os.getenv('NASA_TOKEN')
     bot_token = os.getenv('TELEGRAM_BOT_TOKEN')
 
-    fetch_nasa.fetch_nasa_images(nasa_token)
-    fetch_nasa.fetch_epic_images(nasa_token)
-    fetch_spacex.fetch_spacex_last_launch()
+    fetch_nasa.fetch_nasa_images(nasa_token, folder)
+    fetch_nasa.fetch_epic_images(nasa_token,folder)
+    fetch_spacex.fetch_spacex_last_launch(folder)
 
     image_filenames = os.listdir('images')
 

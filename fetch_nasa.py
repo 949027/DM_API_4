@@ -5,9 +5,9 @@ from datetime import datetime
 import download
 
 
-def fetch_nasa_images(token):
+def fetch_nasa_images(token, folder):
     url = 'https://api.nasa.gov/planetary/apod'
-    path = 'images/nasa'
+    path = f'{folder}/nasa'
     payload = {'api_key': token, 'count': 30}
     response = requests.get(url, params=payload)
     response.raise_for_status()
@@ -20,9 +20,9 @@ def fetch_nasa_images(token):
         download.download_image(picture_url, path, picture_number, picture_extension, payload)
 
 
-def fetch_epic_images(token):
+def fetch_epic_images(token, folder):
     url = 'https://api.nasa.gov/EPIC/api/natural/images'
-    path = 'images/epic'
+    path = f'{folder}/epic'
     payload = {'api_key': token}
     response = requests.get(url, params=payload)
     response.raise_for_status()
