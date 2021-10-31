@@ -1,8 +1,10 @@
 import time
-import telegram
 import os
-from dotenv import load_dotenv
 from pathlib import Path
+
+from dotenv import load_dotenv
+import telegram
+
 import fetch_spacex
 import fetch_nasa
 
@@ -27,8 +29,8 @@ def main():
     bot_token = os.getenv('TELEGRAM_BOT_TOKEN')
     flight_number = os.getenv('FLIGHT_NUMBER')
 
-    # fetch_nasa.fetch_nasa_images(nasa_token, folder)
-    # fetch_nasa.fetch_epic_images(nasa_token, folder)
+    fetch_nasa.fetch_nasa_images(nasa_token, folder)
+    fetch_nasa.fetch_epic_images(nasa_token, folder)
     fetch_spacex.fetch_spacex_one_launch(flight_number, folder)
 
     image_filenames = os.listdir('images')
