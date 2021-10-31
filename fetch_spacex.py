@@ -1,5 +1,5 @@
 import requests
-import publisher
+import download
 
 
 def fetch_spacex_last_launch():
@@ -14,4 +14,4 @@ def fetch_spacex_last_launch():
         response = requests.get(image_url)
         response.raise_for_status()
 
-        publisher.download_image(response, path, image_number, '.jpg')
+        download.download_image(response, path, image_number, '.jpg')

@@ -7,14 +7,6 @@ import fetch_spacex
 import fetch_nasa
 
 
-def download_image(response, path, picture_number, picture_extension):
-    with open(
-            '{}{}{}'.format(path, picture_number, picture_extension),
-            'wb',
-    ) as file:
-        file.write(response.content)
-
-
 def main():
     Path('images').mkdir(parents=True, exist_ok=True)
     load_dotenv()
