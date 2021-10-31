@@ -16,10 +16,8 @@ def fetch_nasa_images(token):
     for picture_number, picture in enumerate(pictures):
         picture_url = picture['url']
         picture_extension = get_extension(picture_url)
-        response = requests.get(picture_url)
-        response.raise_for_status()
 
-        download.download_image(response, path, picture_number, picture_extension)
+        download.download_image(picture_url, path, picture_number, picture_extension, payload)
 
 
 def fetch_epic_images(token):
@@ -39,14 +37,12 @@ def fetch_epic_images(token):
             date_format,
             name,
         )
-        response = requests.get(url, params=payload)
-        response.raise_for_status()
 
-        download.download_image(response, path, number, '.png')
+        download.download_image(url, path, number, '.png', payload)
 
 
 def get_extension(url):
-    path = (parse.urlsplit(url))[2]
+    path = parse.urlsplit(url)[2]
     extension = os.path.splitext(path)[1]
     return extension
 
