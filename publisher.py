@@ -14,8 +14,8 @@ def main():
     token_bot = os.getenv('TOKEN_BOT_TELEGRAM')
     delay = float(os.getenv('DELAY', 86400))
 
-    fetch_nasa.fetch_nasa_image(token_nasa)
-    fetch_nasa.fetch_epic_image(token_nasa)
+    fetch_nasa.fetch_nasa_images(token_nasa)
+    fetch_nasa.fetch_epic_images(token_nasa)
     fetch_spacex.fetch_spacex_last_launch()
 
     image_filenames = os.listdir('images')

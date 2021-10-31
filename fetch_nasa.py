@@ -5,7 +5,7 @@ from datetime import datetime
 import download
 
 
-def fetch_nasa_image(token):
+def fetch_nasa_images(token):
     url = 'https://api.nasa.gov/planetary/apod'
     path = 'images/nasa'
     payload = {'api_key': token, 'count': 30}
@@ -22,7 +22,7 @@ def fetch_nasa_image(token):
         download.download_image(response, path, picture_number, picture_extension)
 
 
-def fetch_epic_image(token):
+def fetch_epic_images(token):
     url = 'https://api.nasa.gov/EPIC/api/natural/images'
     path = 'images/epic'
     payload = {'api_key': token}

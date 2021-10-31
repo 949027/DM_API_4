@@ -8,9 +8,9 @@ def fetch_spacex_last_launch():
     response = requests.get(url)
     response.raise_for_status()
 
-    images_url = response.json()['links']['flickr_images']
+    image_urls = response.json()['links']['flickr_images']
 
-    for image_number, image_url in enumerate(images_url):
+    for image_number, image_url in enumerate(image_urls):
         response = requests.get(image_url)
         response.raise_for_status()
 
