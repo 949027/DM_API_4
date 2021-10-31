@@ -7,27 +7,31 @@ import fetch_spacex
 import fetch_nasa
 
 
+def post_images_in_telegram(image_filenames, bot_token):
+    bot = telegram.Bot(token=bot_token)
+    delay = float(os.getenv('DELAY', 86400))
+
+    for image_filename in image_filenames:
+        with open(f'images/{image_filename}', 'rb') as file:
+            bot.send_document(chat_id=os.getenv('BOT_NAME'), document=file)
+
+        time.sleep(delay)
+
+
 def main():
     Path('images').mkdir(parents=True, exist_ok=True)
     load_dotenv()
-    token_nasa = os.getenv('NASA_TOKEN')
-    token_bot = os.getenv('TELEGRAM_BOT_TOKEN')
-    delay = float(os.getenv('DELAY', 86400))
+    nasa_token = os.getenv('NASA_TOKEN')
+    bot_token = os.getenv('TELEGRAM_BOT_TOKEN')
 
-    fetch_nasa.fetch_nasa_images(token_nasa)
-    fetch_nasa.fetch_epic_images(token_nasa)
+    fetch_nasa.fetch_nasa_images(nasa_token)
+    fetch_nasa.fetch_epic_images(nasa_token)
     fetch_spacex.fetch_spacex_last_launch()
 
     image_filenames = os.listdir('images')
 
-    bot = telegram.Bot(token=token_bot)
-
     while True:
-        for image_filename in image_filenames:
-            with open(f'images/{image_filename}', 'rb') as file:
-                bot.send_document(chat_id=os.getenv('BOT_NAME'), document=file)
-
-            time.sleep(delay)
+        post_images_in_telegram(image_filenames, bot_token)
 
 
 if __name__ == '__main__':
