@@ -2,11 +2,14 @@ import requests
 import download
 
 
-def fetch_spacex_last_launch(folder):
-    url = 'https://api.spacexdata.com/v3/launches/74'
+def fetch_spacex_one_launch(flight_number, folder):
+    url = f'https://api.spacexdata.com/v3/launches/{flight_number}'
     path = f'{folder}/spacex'
-    response = requests.get(url)
-    response.raise_for_status()
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+    except requests.HTTPError:
+        return
 
     image_urls = response.json()['links']['flickr_images']
 

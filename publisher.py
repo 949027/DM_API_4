@@ -25,10 +25,11 @@ def main():
     load_dotenv()
     nasa_token = os.getenv('NASA_TOKEN')
     bot_token = os.getenv('TELEGRAM_BOT_TOKEN')
+    flight_number = os.getenv('FLIGHT_NUMBER')
 
-    fetch_nasa.fetch_nasa_images(nasa_token, folder)
-    fetch_nasa.fetch_epic_images(nasa_token,folder)
-    fetch_spacex.fetch_spacex_last_launch(folder)
+    # fetch_nasa.fetch_nasa_images(nasa_token, folder)
+    # fetch_nasa.fetch_epic_images(nasa_token, folder)
+    fetch_spacex.fetch_spacex_one_launch(flight_number, folder)
 
     image_filenames = os.listdir('images')
 
