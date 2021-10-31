@@ -7,12 +7,12 @@ import fetch_spacex
 import fetch_nasa
 
 
-def post_images_in_telegram(image_filenames, bot_token):
+def post_images_in_telegram(image_filenames, bot_token, folder):
     bot = telegram.Bot(token=bot_token)
     delay = float(os.getenv('DELAY', 86400))
 
     for image_filename in image_filenames:
-        with open(f'images/{image_filename}', 'rb') as file:
+        with open('{}/{}'. format(folder, image_filename), 'rb') as file:
             bot.send_document(chat_id=os.getenv('BOT_NAME'), document=file)
 
         time.sleep(delay)
@@ -33,7 +33,7 @@ def main():
     image_filenames = os.listdir('images')
 
     while True:
-        post_images_in_telegram(image_filenames, bot_token)
+        post_images_in_telegram(image_filenames, bot_token, folder)
 
 
 if __name__ == '__main__':
