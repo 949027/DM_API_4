@@ -1,8 +1,8 @@
 import time
 import os
 from pathlib import Path
-import requests
 
+import requests
 from dotenv import load_dotenv
 import telegram
 

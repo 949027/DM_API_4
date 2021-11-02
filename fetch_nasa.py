@@ -1,7 +1,8 @@
 from datetime import datetime
-import requests
 import os
 from urllib import parse
+
+import requests
 
 import download
 
