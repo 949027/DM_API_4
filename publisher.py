@@ -10,7 +10,7 @@ import fetch_spacex
 import fetch_nasa
 
 
-def post_images_in_telegram(image_filenames, bot_token, channel_id, folder, delay):
+def post_images(image_filenames, bot_token, channel_id, folder, delay):
     bot = telegram.Bot(token=bot_token)
 
     for image_filename in image_filenames:
@@ -42,7 +42,7 @@ def main():
     image_filenames = os.listdir('images')
 
     while True:
-        post_images_in_telegram(image_filenames, bot_token, channel_id, folder, delay)
+        post_images(image_filenames, bot_token, channel_id, folder, delay)
 
 
 if __name__ == '__main__':

@@ -18,7 +18,13 @@ def fetch_nasa_images(token, folder):
         picture_url = picture['url']
         picture_extension = get_extension(picture_url)
 
-        download.download_image(picture_url, path, picture_number, picture_extension, payload)
+        download.download_image(
+            picture_url,
+            path,
+            picture_number,
+            picture_extension,
+            payload,
+        )
 
 
 def fetch_epic_images(token, folder):
@@ -45,6 +51,3 @@ def get_extension(url):
     path = parse.urlsplit(url)[2]
     extension = os.path.splitext(path)[1]
     return extension
-
-
-
