@@ -39,9 +39,9 @@ def fetch_epic_images(token, folder):
     for number, image in enumerate(images):
         name = image['image']
         date = datetime.strptime(image['date'], '%Y-%m-%d %H:%M:%S')
-        format_date = date.strftime('%Y/%m/%d')
+        formatted_date = date.strftime('%Y/%m/%d')
         url = 'https://api.nasa.gov/EPIC/archive/natural/{}/png/{}.png'.format(
-            format_date,
+            formatted_date,
             name,
         )
 
