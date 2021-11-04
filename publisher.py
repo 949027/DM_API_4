@@ -33,11 +33,7 @@ def main():
 
     fetch_nasa.fetch_nasa_images(nasa_token, folder)
     fetch_nasa.fetch_epic_images(nasa_token, folder)
-
-    try:
-        fetch_spacex.fetch_spacex_one_launch(flight_number, folder)
-    except requests.HTTPError:
-        pass
+    fetch_spacex.fetch_spacex_one_launch(flight_number, folder)
 
     image_filenames = os.listdir('images')
 
